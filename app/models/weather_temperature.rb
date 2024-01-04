@@ -1,0 +1,2 @@
+class WeatherTemperature < ApplicationRecord
+end
