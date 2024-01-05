@@ -17,8 +17,8 @@ class WeatherPicker
     body = JSON.parse(response.body)
 
     {
-      temperature: body['current']['temp_c'],
-      feelslike: body['current']['feelslike_c']
+      temp_c: body['current']['temp_c'],
+      feelslike_c: body['current']['feelslike_c']
     }
   end
 end
