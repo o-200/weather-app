@@ -4,7 +4,7 @@
 
   <%= button_to 'Record temperature', weather_temperatures_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
 </div>
-<br>
-<div data-controller="metric" data-action="metric#connect"></div>
 
+<div data-controller="metric">
+  <canvas id="metric" data-metric-target="myChart" width="800" height="450"></canvas>
 </div>
