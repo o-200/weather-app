@@ -1,9 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-import { Chart, registerables } from "chart.js";
-Chart.register(...registerables);
-
-
 export default class extends Controller {
     static targets = ['myChart'];
 
@@ -15,7 +11,7 @@ export default class extends Controller {
         new Chart(this.canvasContext(), {
             type: 'line',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['Red', 'Blue', 'asd', 'Green', 'Purple', 'Orange'],
                 datasets: [{
                     label: '# of Votes',
                     data: [12, 19, 3, 5, 2, 3],
