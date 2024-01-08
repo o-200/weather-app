@@ -25,3 +25,5 @@ group :development do
 end
 
 gem "faraday", "~> 2.8"
+
+gem "gon", "~> 6.4"
