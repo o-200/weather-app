@@ -2,8 +2,8 @@ class WeatherTemperaturesController < ApplicationController
   def index
     weathers = WeatherTemperature.last(5)
 
-    gon.temps = weathers.map { |n| n.temp_c }
-    gon.dates = weathers.map { |n| n.created_at.to_date }
+    gon.temps = weathers.temperatures
+    gon.dates = weathers.dates
   end
 
   def create
