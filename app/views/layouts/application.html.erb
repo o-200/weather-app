@@ -9,13 +9,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= include_gon %>
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= notice %>
-      <%= alert %>
-      <%= yield %>
-    </main>
+    <%= notice %>
+    <%= alert %>
+    <%= yield %>
   </body>
 </html>
