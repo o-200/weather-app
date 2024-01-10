@@ -1,9 +1,7 @@
 class WeatherTemperaturesController < ApplicationController
   def index
-    weathers = WeatherTemperature.last(5)
-
-    gon.temps = weathers.temperatures
-    gon.dates = weathers.dates
+    gon.temps = WeatherTemperature.get_temps(5)
+    gon.dates = WeatherTemperature.get_dates(5)
   end
 
   def create
