@@ -13,10 +13,10 @@ export default class extends Controller {
         new Chart(this.canvasContext(), {
             type: 'line',
             data: {
-                labels: gon.dates,
+                labels: Object.keys(gon.avg_temps_by_month),
                 datasets: [{
                     label: '# temperature in Celsium',
-                    data: gon.temps,
+                    data: Object.values(gon.avg_temps_by_month),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)'
                     ],

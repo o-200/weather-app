@@ -3,7 +3,11 @@ class WeatherTemperature < ApplicationRecord
     limit(limit).pluck(:temp_c)
   end
 
-  def self.get_dates(limit)
-    limit(limit).pluck(:created_at)
+  def self.get_avg_by_month_temps
+    WeatherTemperature.group(Arel.sql("DATE_TRUNC('month', created_at)"))
+                      .order(Arel.sql("DATE_TRUNC('month', created_at)"))
+                      .average(:temp_c)
+                      .transform_keys { |key| key.strftime("%B") }
+                      .transform_values { |value| value.to_i }
   end
 end
