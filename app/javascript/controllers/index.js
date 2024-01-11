@@ -5,4 +5,7 @@
 import { application } from "./application"
 
 import MetricController from "./metric_controller"
+import PredictionController from "./prediction_controller"
+
 application.register("metric", MetricController)
+application.register("prediction", PredictionController)

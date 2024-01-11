@@ -21,4 +21,23 @@ class WeatherPicker
       feelslike_c: body['current']['feelslike_c']
     }
   end
+
+   def forecast_weather_week(q='Moscow')
+    response = @conn.get("forecast.json?key=#{API_KEY}&q=#{q}&days=7")
+    arr = JSON.parse(response.body).dig('forecast', 'forecastday')
+
+    array = []
+    arr.each do |n|
+      hash = {
+        date: n['date'],
+        max_temp_c: n['day']['maxtemp_c'],
+        avg_temp_c: n['day']['avgtemp_c'],
+        min_temp_c: n['day']['mintemp_c']
+      }
+
+      array << hash
+    end
+
+    array
+  end
 end

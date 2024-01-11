@@ -10,4 +10,8 @@ class WeatherTemperature < ApplicationRecord
                       .transform_keys { |key| key.strftime("%B") }
                       .transform_values { |value| value.to_i }
   end
+
+  def self.get_week_temps
+    WeatherPicker.new.forecast_weather_week
+  end
 end
