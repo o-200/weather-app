@@ -27,3 +27,7 @@ end
 gem "faraday", "~> 2.8"
 
 gem "gon", "~> 6.4"
+
+gem "whenever", "~> 1.0"
+
+gem "sidekiq", "~> 7.2"

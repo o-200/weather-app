@@ -6,15 +6,4 @@ class WeatherTemperaturesController < ApplicationController
   def weather_prediction
     gon.temps_by_day = WeatherTemperature.get_week_temps
   end
-
-  def create
-    temperature = WeatherPicker.new.current_weather
-    weather = WeatherTemperature.new(temperature)
-
-    if weather.save
-      flash[:notice] = "Record was successfully created"
-    else
-      flash[:alert] = weather.errors.full_messages
-    end
-  end
 end
