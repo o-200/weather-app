@@ -32,7 +32,8 @@ class WeatherPicker
         date: n['date'],
         max_temp_c: n['day']['maxtemp_c'],
         avg_temp_c: n['day']['avgtemp_c'],
-        min_temp_c: n['day']['mintemp_c']
+        min_temp_c: n['day']['mintemp_c'],
+        condition:  n['day']['condition']
       }
 
       array << hash
