@@ -22,7 +22,9 @@ class WeatherPicker
     }
   end
 
-   def forecast_weather_week(q='Moscow')
+   def forecast_weather_week(q)
+    q = 'Moscow' if q.nil?
+
     response = @conn.get("forecast.json?key=#{API_KEY}&q=#{q}&days=7")
     response_body = JSON.parse(response.body)
     arr = response_body.dig('forecast', 'forecastday')

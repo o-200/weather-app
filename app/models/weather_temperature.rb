@@ -11,11 +11,11 @@ class WeatherTemperature < ApplicationRecord
                       .transform_values { |value| value.to_i }
   end
 
-  def self.get_week_temps
-    WeatherPicker.new.forecast_weather_week[:temperatures]
+  def self.get_week_temps(location)
+    WeatherPicker.new.forecast_weather_week(location)[:temperatures]
   end
 
-  def self.get_location
-    WeatherPicker.new.forecast_weather_week[:location]
+  def self.get_location(location)
+    WeatherPicker.new.forecast_weather_week(location)[:location]
   end
 end
