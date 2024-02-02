@@ -10,9 +10,9 @@ export default class extends Controller {
         const weatherListTarget = this.weatherListTarget;
         const weatherHeaderTarget = this.weatherHeaderTarget;
 
-        const avgTemps = gon.temps_by_day.map(hash => hash['avg_temp_c']);
-        const labels = gon.temps_by_day.map(hash => hash['date']);
-        const todayTemp = gon.temps_by_day[0];
+        const avgTemps = gon.temps.map(hash => hash['avg_temp_c']);
+        const labels = gon.temps.map(hash => hash['date']);
+        const todayTemp = gon.temps[0];
 
         this.renderWeatherHeader(weatherHeaderTarget, todayTemp);
         this.renderChart(chartContext, labels, avgTemps);
@@ -26,14 +26,14 @@ export default class extends Controller {
     renderWeatherHeader(target, temp) {
       if (!target) return;
 
-      const header = document.createElement('div');
+      let header = document.createElement('div');
       header.id = 'cardsList'
       header.classList.add('flex', 'justify-between', 'space-x-4', 'dark:text-gray-400');
       header.innerHTML = `<div class="w-full max-w-screen-ring-white">
                             <div class="flex justify-between">
                               <div class="flex flex-col">
                                 <span class="text-6xl font-bold">${temp['avg_temp_c']}°C</span>
-                                <span class="font-semibold mt-1 text-gray-500">Moscow, RU</span>
+                                <span class="font-semibold mt-1 text-gray-500">${gon.location.name}/${gon.location.country}</span>
                               </div>
                               <div class="flex flex-col">
                                 <img src='${temp['condition']['icon']}'></img>
@@ -53,7 +53,7 @@ export default class extends Controller {
                 borderColor: '#f67019',
                 fill: false,
                 stepped: false,
-                tension: 0.4,
+                tension: 0.5,
             }]
         };
 
@@ -90,7 +90,7 @@ export default class extends Controller {
         cardsList.classList.add('flex', 'justify-between', 'space-x-4', 'dark:text-gray-400');
         cardsList.id = 'cardsList';
 
-        gon.temps_by_day.forEach(element => {
+        gon.temps.forEach(element => {
             const card = document.createElement('div');
             card.classList.add('flex', 'flex-col', 'items-center', 'space-y-1');
             card.innerHTML = `<span class="uppercase">${element.date}</span>

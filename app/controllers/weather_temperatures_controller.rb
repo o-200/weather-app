@@ -4,6 +4,7 @@ class WeatherTemperaturesController < ApplicationController
   end
 
   def weather_prediction
-    gon.temps_by_day = WeatherTemperature.get_week_temps
+    gon.temps = WeatherTemperature.get_week_temps
+    gon.location = WeatherTemperature.get_location
   end
 end

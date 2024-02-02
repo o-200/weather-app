@@ -12,6 +12,10 @@ class WeatherTemperature < ApplicationRecord
   end
 
   def self.get_week_temps
-    WeatherPicker.new.forecast_weather_week
+    WeatherPicker.new.forecast_weather_week[:temperatures]
+  end
+
+  def self.get_location
+    WeatherPicker.new.forecast_weather_week[:location]
   end
 end

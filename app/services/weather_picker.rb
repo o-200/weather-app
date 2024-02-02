@@ -24,9 +24,16 @@ class WeatherPicker
 
    def forecast_weather_week(q='Moscow')
     response = @conn.get("forecast.json?key=#{API_KEY}&q=#{q}&days=7")
-    arr = JSON.parse(response.body).dig('forecast', 'forecastday')
+    response_body = JSON.parse(response.body)
+    arr = response_body.dig('forecast', 'forecastday')
 
     array = []
+
+    location_hash = {
+      name:     response_body.dig('location', 'name'),
+      country:  response_body.dig('location', 'country')
+    }
+
     arr.each do |n|
       hash = {
         date: n['date'],
@@ -39,6 +46,10 @@ class WeatherPicker
       array << hash
     end
 
-    array
+    arr = array * 3
+    {
+      location: location_hash,
+      temperatures: arr.shift(7)
+    }
   end
 end
