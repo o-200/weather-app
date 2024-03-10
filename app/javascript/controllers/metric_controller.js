@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
+import createChart from './utils/graph_creator.js'
 
 export default class extends Controller {
     static targets = ['myChart'];
@@ -10,9 +9,7 @@ export default class extends Controller {
     }
 
     connect() {
-        new Chart(this.canvasContext(), {
-            type: 'line',
-            data: {
+        const data = {
                 labels: Object.keys(gon.avg_temps_by_month),
                 datasets: [{
                     label: '# temperature in Celsium',
@@ -25,14 +22,16 @@ export default class extends Controller {
                     ],
                     borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: false
-                    }
+            }
+
+        const options = {
+            scales: {
+                y: {
+                    beginAtZero: false
                 }
             }
-        });
+        }
+
+        createChart(this.canvasContext(), data, options)
     }
 }
