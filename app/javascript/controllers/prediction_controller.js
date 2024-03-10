@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
+import createChart from './utils/graph_creator.js'
 
 export default class extends Controller {
     static targets = ['myChart', 'weatherList', 'weatherHeader'];
@@ -57,10 +56,7 @@ export default class extends Controller {
             }]
         };
 
-        new Chart(context, {
-            type: 'line',
-            data: data,
-            options: {
+        const options = {
                 responsive: true,
                 interaction: {
                     intersect: false,
@@ -80,7 +76,8 @@ export default class extends Controller {
                     }
                 }
             }
-        });
+
+        createChart(context, data, options)
     }
 
     renderWeatherList(target) {
