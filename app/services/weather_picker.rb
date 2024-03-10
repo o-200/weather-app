@@ -13,7 +13,8 @@ class WeatherPicker
   end
 
   def current_weather(q='Moscow')
-    response = @conn.get("current.json?key=#{API_KEY}&q=#{q}&")
+    q = URI.parse(URI::Parser.new.escape(q))
+    response = @conn.get("current.json?key=#{API_KEY}&q=#{q}&lang=ru")
     body = JSON.parse(response.body)
 
     {
@@ -24,8 +25,9 @@ class WeatherPicker
 
    def forecast_weather_week(q)
     q = 'Moscow' if q.nil?
+    q = URI.parse(URI::Parser.new.escape(q))
 
-    response = @conn.get("forecast.json?key=#{API_KEY}&q=#{q}&days=7")
+    response = @conn.get("forecast.json?key=#{API_KEY}&q=#{q}&days=7&lang=ru")
     response_body = JSON.parse(response.body)
     arr = response_body.dig('forecast', 'forecastday')
 
